@@ -1,0 +1,26 @@
+{
+  "name": "presence_detection_server",
+  "version": "1.0.0",
+  "description": "This is the 'room marker' part of this project, this code is designed to run on a Pi that is stationary in a room to detect BLE devices entering that room and notify the system via MQTT.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DylanGore/PresenceDetection.git"
+  },
+  "author": "Dylan Gore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DylanGore/PresenceDetection/issues"
+  },
+  "homepage": "https://github.com/DylanGore/PresenceDetection#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mqtt": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
