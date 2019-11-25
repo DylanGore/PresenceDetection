@@ -1,3 +1,3 @@
-# Presence Detection - Room Marker
+# Presence Detection - Server
 
-This is the 'room marker' part of this project, this code is designed to run on a Pi that is stationary in a room to detect BLE devices entering that room and notify the system via MQTT.
+This is the 'server' part of this project, it is the part that does the calculation to determine which room a user is in.
