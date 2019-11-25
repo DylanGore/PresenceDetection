@@ -5,6 +5,9 @@ require('dotenv').config();
 const noble = require('noble');
 const mqtt = require('mqtt');
 
+// General Variables
+const name = process.env.NAME;
+
 // MQTT Settings
 const mqtt_host = process.env.MQTT_HOST;
 const mqtt_user = process.env.MQTT_USER;
@@ -13,7 +16,7 @@ const client = mqtt.connect(mqtt_host, {
     username: mqtt_user,
     password: mqtt_pass
 });
-const mqtt_base_topic = 'presence/room1/';
+const mqtt_base_topic = `presence/${name}/`;
 
 // MQTT Subscribe
 client.on('connect', () => {
@@ -34,7 +37,7 @@ noble.on('discover', function(peripheral) {
             console.log('MAC: ' + peripheral.uuid);
             console.log('RSSI: ' + peripheral.rssi + '\n\n');
             client.publish(
-                'presence/users/' + user.name,
+                `${mqtt_base_topic}/users/` + user.name,
                 JSON.stringify({
                     timestamp: now,
                     mac: peripheral.uuid,
