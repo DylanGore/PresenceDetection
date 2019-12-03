@@ -12,7 +12,18 @@ let router = new Router({
         {
             path: '/',
             name: 'home',
+            meta: {
+                requiresGuest: true
+            },
             component: () => import('./views/Home')
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            meta: {
+                requiresAuth: true
+            },
+            component: () => import('./views/Dashboard')
         },
         {
             path: '/login',

@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import { auth } from '@/firebase/init';
 import { firestorePlugin } from 'vuefire';
+import VueMqtt from 'vue-mqtt';
 import Default from './layouts/Default';
 import 'materialize-css/dist/js/materialize.min';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -15,6 +16,10 @@ Vue.use(firestorePlugin);
 Vue.component('default-layout', Default);
 
 Vue.config.productionTip = false;
+
+// MQTT
+const options = { username: process.env.VUE_APP_MQTT_USER, password: process.env.VUE_APP_MQTT_PASS, clientId: 'dev' };
+Vue.use(VueMqtt, process.env.VUE_APP_MQTT_HOST, options);
 
 let app = null;
 
