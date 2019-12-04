@@ -3,21 +3,18 @@
         <div class="row">
             <div class="col s12">
                 <h1>Dashboard</h1>
-                <MQTTInfo />
+                <PeopleList />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import MQTTInfo from '../components/mqtt/MQTTInfo';
+import PeopleList from '../components/people/PeopleList';
 export default {
     name: 'dashboard',
     components: {
-        MQTTInfo
-    },
-    data() {
-        return {};
+        PeopleList
     }
 };
 </script>

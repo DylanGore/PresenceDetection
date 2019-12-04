@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import { auth } from '@/firebase/init';
 import { firestorePlugin } from 'vuefire';
-import VueMqtt from 'vue-mqtt';
+import moment from 'moment';
 import Default from './layouts/Default';
 import 'materialize-css/dist/js/materialize.min';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -15,12 +15,15 @@ Vue.use(firestorePlugin);
 // Layouts
 Vue.component('default-layout', Default);
 
+// Filters
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment.unix(String(value)).format('DD/MM/YYYY hh:mm');
+    }
+});
+
+// General Settings
 Vue.config.productionTip = false;
-
-// MQTT
-const options = { username: process.env.VUE_APP_MQTT_USER, password: process.env.VUE_APP_MQTT_PASS, clientId: 'dev' };
-Vue.use(VueMqtt, process.env.VUE_APP_MQTT_HOST, options);
-
 let app = null;
 
 // Firebase authentication check
