@@ -15,13 +15,12 @@ sudo apt install git -y
 echo -e "\n\n$UNDERLINE Installing Bluez and Bluetooth Dependencies... $RESET\n"
 sudo apt install bluetooth bluez libbluetooth-dev libudev-dev -y
 
-echo -e "\n\n$UNDERLINEInstalling Node.JS 8.11.1 $RESET\n"
+VERSION=v8.16.2;
+echo -e "\n\n$UNDERLINE Installing Node.JS $VERSION $RESET\n"
 
 # Node JS script By Steven de Salas
 # Based on script by Richard Stanley @ https://github.com/audstanley/Node-MongoDb-Pi/
 # This is for a RaspberryPi Zero but should work across all models.
-
-VERSION=v8.11.1;
 
 # Creates directory for downloads, and downloads node
 cd ~/ && mkdir temp && cd temp;

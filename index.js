@@ -4,9 +4,31 @@ require('dotenv').config();
 // Imports
 const noble = require('noble');
 const mqtt = require('mqtt');
+const admin = require('firebase-admin');
 
 // General Variables
 const name = process.env.NAME;
+const serviceAccount = require('./serviceAccount.json');
+let tracking = [];
+// Firebase
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: process.env.FIREBASE_DB_URL
+});
+
+var db = admin.firestore();
+var people = db
+    .collection('people')
+    .get()
+    .then(res => {
+        console.log();
+        res.forEach(doc => {
+            tracking.push({ name: doc.data().slug, device: doc.data().mac });
+            console.log(`Device Added: ${doc.data().mac}`);
+        });
+        console.log();
+    })
+    .catch(err => console.error(err.message));
 
 // MQTT Settings
 const mqtt_host = process.env.MQTT_HOST;
@@ -23,9 +45,6 @@ client.on('connect', () => {
     console.log('MQTT Connected!');
     client.subscribe(mqtt_base_topic);
 });
-
-//replace with your hardware address
-let tracking = [{ name: 'person1', device: process.env.DEV_MAC }];
 
 // Check for beacon and post to MQTT
 noble.on('discover', function(peripheral) {
