@@ -18,6 +18,7 @@
   "homepage": "https://github.com/DylanGore/PresenceDetection#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "firebase-admin": "^8.8.0",
     "mqtt": "^3.0.0"
   },
   "devDependencies": {
